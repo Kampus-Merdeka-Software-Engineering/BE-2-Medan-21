@@ -12,9 +12,8 @@ app.use(cors({
     origin: '*',
 }))
 app.use(express.json()); //to accept data in json format 
-app.use(express.urlencoded()); //to decode the data send through html form
-app.use(express.static('./')); //to serve our public folder as static folder
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true })); //to decode the data send through html form
+app.use(express.static('./')); //to serve our public folder as static folder 
 
 //API Routes
 
@@ -90,10 +89,10 @@ app.post('/formpostl', async function (req, res){
 app.get('/formgeta', async function (req, res){
     await console.log(req.body);
     const param = req.body;
-    const idbarang = param.idbarang;
-    const queryLgn = "SELECT nama, harga FROM item WHERE idbarang = ?";
-    const values = [idbarang]
-    conn.query(queryStr, values, (err, results) => {
+    const idBarang = param.idBarang;
+    const queryCart = "SELECT namaBarang, hargaBarang FROM item WHERE idBarang = ?";
+    const values = [idBarang]
+    conn.query(queryCart, values, (err, results) => {
         if (err) {
             console.log(err);
             res.status(500).json({
