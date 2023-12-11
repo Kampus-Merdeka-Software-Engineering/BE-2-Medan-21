@@ -1,4 +1,5 @@
-const express = require("express");const port=process.env.DB_PORT || 3003;
+const express = require("express");
+const port=process.env.DB_PORT || 3003;
 const mysql = require("mysql2");
 const app = express();
 const bodyParser = require('body-parser');
@@ -17,8 +18,9 @@ app.use(cors({
     origin: '*',
 }))
 app.use(express.json()); //to accept data in json format 
-app.use(express.urlencoded({ extended: true })); //to decode the data send through html form
+app.use(express.urlencoded()); //to decode the data send through html form
 app.use(express.static('./')); //to serve our public folder as static folder 
+app.use(bodyParser.json());
 
 // http router
 app.use("/", mainRouter);
