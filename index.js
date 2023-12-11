@@ -20,11 +20,10 @@ app.use(cors({
 app.use(express.json()); //to accept data in json format 
 app.use(express.urlencoded()); //to decode the data send through html form
 app.use(express.static('./')); //to serve our public folder as static folder 
-app.use(bodyParser.json());
 
 // http router
 app.use("/", mainRouter);
 
-app.listen(port, '0.0.0.0', ()=>{
+app.listen(port, ()=>{
     console.log("server started on port 3003");
 });
